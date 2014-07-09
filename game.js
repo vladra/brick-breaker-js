@@ -12,6 +12,7 @@ var lifeLeft = 3;
 $(document).ready(function() {
 	window.game = new Game();
 	setLifeText();
+	$('#pad').draggable({ axis: 'x' });
 });
 
 // print how many lifes player have
@@ -115,8 +116,8 @@ function Pad(n) {
 	var fieldHeight = parseInt($('#field').css('height'));
 	this.width = field_width / n;
 	this.height =  this.width / 5
-	window.pad = $('<div class="brick"></div>')
-		.css('width', 800) //should be this.width
+	window.pad = $('<div class="brick" id="pad"></div>')
+		.css('width', this.width) //should be this.width
 		.css('height', this.height)
 		.css('top', fieldHeight * 0.9)
 		.css('left', field_width / 2 - this.width / 2);

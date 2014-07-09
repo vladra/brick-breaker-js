@@ -44,6 +44,16 @@ body {
 	height: 20px;
 	background-color: red;
 }
+#pad {
+	position: absolute;
+	z-index: 50;
+}
+#touch {
+	position: block;
+	height: 40px;
+	background-color: red;
+	z-index: 9;
+}
 
 .ball {
 	position: absolute;

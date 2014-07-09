@@ -12,7 +12,8 @@ var lifeLeft = 3;
 $(document).ready(function() {
 	window.game = new Game();
 	setLifeText();
-	$('#pad').draggable({ axis: 'x' });
+	// $('#touch').draggable({ axis: 'x', containment: '#pad' });
+	$('#pad').draggable({ axis: 'x', containment: '#field' });
 });
 
 // print how many lifes player have
@@ -115,8 +116,8 @@ function Pad(n) {
 	var field_width = parseInt($('#field').css('width'));
 	var fieldHeight = parseInt($('#field').css('height'));
 	this.width = field_width / n;
-	this.height =  this.width / 5
-	window.pad = $('<div class="brick" id="pad"></div>')
+	this.height = 400; //this.width / 5;
+	window.pad = $('<div id="pad"><div id="touch"></div></div>')
 		.css('width', this.width) //should be this.width
 		.css('height', this.height)
 		.css('top', fieldHeight * 0.9)
@@ -160,7 +161,7 @@ function checkCollision(ball) {
 	var ballTop = parseInt(ball.css('top'));
 	var ballLeft = parseInt(ball.css('left'));
 	// pad collision check
-	if (padTop <= (ballTop+ball.width()) && !( (padTop - pad.height()/2) <= (ballTop+ball.height()/2) ) && padLeft <= (ballLeft+ball.width()/4*3) && (padLeft + pad.width()) >= (ballLeft+ball.width()/4)
+	if (padTop <= (ballTop+ball.width()) && !( (padTop - 10) <= (ballTop+ball.height()/2) ) && padLeft <= (ballLeft+ball.width()/4*3) && (padLeft + pad.width()) >= (ballLeft+ball.width()/4)
 			) {
 		ballSpeedX = ballSpeedY / (1 + Math.random());
 		// if pad is moving during collision do some random stuff

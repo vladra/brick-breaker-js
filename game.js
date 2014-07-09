@@ -105,7 +105,6 @@ function Brick(x, y) {
 	}
 
 	this.kill = function() {
-		// console.log(this.brick);
     this.brick.css('background-color', getRandomColor()).remove();
   }
 }
@@ -117,7 +116,7 @@ function Pad(n) {
 	this.width = field_width / n;
 	this.height =  this.width / 5
 	window.pad = $('<div class="brick"></div>')
-		.css('width', this.width) //should be this.width
+		.css('width', 800) //should be this.width
 		.css('height', this.height)
 		.css('top', fieldHeight * 0.9)
 		.css('left', field_width / 2 - this.width / 2);
@@ -195,7 +194,7 @@ function checkCollision(ball) {
 				var i = window.bricks.indexOf(brick);
 				if (i > -1) window.bricks.splice(i, 1); // delete brick from an array
 				brick.kill();
-				ballSpeedY += 0.2; // increase ball speed after each brick hit
+				if (ballSpeedY < 6) ballSpeedY += 0.2; // increase ball speed after each brick hit
 			}
 			if (done) throw BreakException; // interrup array
 		});
@@ -224,6 +223,13 @@ function checkCollision(ball) {
 			ball.remove();
 			$('#game-over').fadeIn(1000);
 		}
+	}
+
+	// check if palyer wins
+	if (window.bricks.length === 0) {
+		ball.remove();
+		$('#game-text').text('YOU WIN!')
+		$('#game-over').fadeIn(1000);
 	}
 
 }
